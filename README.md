@@ -1,10 +1,14 @@
 # 🔧 HWProbe
 
-**Free, open-source browser tools to test your hardware.**
+**Open-source technical solution for browser-based hardware diagnostics.**
 
 👉 **[hwprobe.com](https://hwprobe.com)**
 
 Test your gamepad, keyboard, mouse, monitor, microphone & speakers — directly in the browser. No downloads. No data collection. 100% client-side.
+
+> Sponsored by **OneSpiral**.
+>
+> This repository contains the open-source technical implementation. Production distribution, localization, content, and commercial layers are maintained separately.
 
 ## ✨ Features
 
@@ -20,10 +24,10 @@ Test your gamepad, keyboard, mouse, monitor, microphone & speakers — directly 
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/nicepkg/hwprobe.git
+git clone https://github.com/OneSpiral/hwprobe.git
 cd hwprobe
-bun install
-bun run dev
+pnpm install
+pnpm dev
 ```
 
 ## 🏗️ Tech Stack
@@ -38,7 +42,7 @@ bun run dev
 ## 📦 Deploy
 
 ```bash
-bun run build
+pnpm build
 npx wrangler pages deploy build --project-name=hwprobe
 ```
 
