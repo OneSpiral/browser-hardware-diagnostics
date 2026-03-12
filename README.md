@@ -49,6 +49,9 @@ We use a three-layer portfolio model:
 - **labs** — exploratory prototypes and research work that may later graduate into solutions or apps
 
 This repository belongs in **solutions**.
+Top-level workspace folders should stay lowercase: `solutions/`, `apps/`, and `labs/`.
+Visibility is a repo property, not a folder name.
+See [PROJECT_SCOPE.md](./PROJECT_SCOPE.md).
 
 ## Repository boundary
 
@@ -93,6 +96,7 @@ If you want to help expand browser hardware diagnostics capabilities, start here
 - [PERMISSION_CHECKLIST.md](./PERMISSION_CHECKLIST.md)
 - [CHANGELOG.md](./CHANGELOG.md)
 - [TESTING_BOUNDARY.md](./TESTING_BOUNDARY.md)
+- [PROJECT_SCOPE.md](./PROJECT_SCOPE.md)
 - [DISCUSSIONS.md](./DISCUSSIONS.md)
 - [Discussions](https://github.com/OneSpiral/browser-hardware-diagnostics/discussions)
 - [Releases](https://github.com/OneSpiral/browser-hardware-diagnostics/releases)

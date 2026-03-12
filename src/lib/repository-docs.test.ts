@@ -27,6 +27,7 @@ const changelogPath = resolve(root, "CHANGELOG.md");
 const fundingPath = resolve(root, ".github/FUNDING.yml");
 const packageJsonPath = resolve(root, "package.json");
 const readmePath = resolve(root, "README.md");
+const projectScopePath = resolve(root, "PROJECT_SCOPE.md");
 
 const allowedPublicTests = [
 	"src/lib/public-branding.test.ts",
@@ -73,6 +74,7 @@ describe("repository sponsorship docs", () => {
 		expect(existsSync(architecturePath)).toBe(true);
 		expect(existsSync(roadmapPath)).toBe(true);
 		expect(existsSync(changelogPath)).toBe(true);
+		expect(existsSync(projectScopePath)).toBe(true);
 	});
 
 	it("explains that OSS is the technical solution and the branded website is a sponsor", () => {
@@ -107,6 +109,7 @@ describe("repository sponsorship docs", () => {
 		expect(readme).toContain("actions/workflows/ci.yml");
 		expect(readme).toContain("/releases");
 		expect(readme).toContain("TESTING_BOUNDARY.md");
+		expect(readme).toContain("PROJECT_SCOPE.md");
 		expect(readme).toContain("private evaluation assets");
 		expect(readme).toContain("solutions");
 		expect(readme).toContain("apps");
@@ -121,6 +124,18 @@ describe("repository sponsorship docs", () => {
 		expect(contributing).toContain("private evaluation assets");
 		expect(contributing).toContain("golden datasets");
 		expect(contributing).toContain("pnpm test:public");
+	});
+
+	it("documents the project type, visibility, and lowercase workspace convention", () => {
+		const projectScope = readFileSync(projectScopePath, "utf8");
+		expect(projectScope).toContain("Type: solution");
+		expect(projectScope).toContain("Visibility: public");
+		expect(projectScope).toContain("Workspace bucket: solutions");
+		expect(projectScope).toContain("Private eval assets: forbidden");
+		expect(projectScope).toContain("solutions/");
+		expect(projectScope).toContain("apps/");
+		expect(projectScope).toContain("labs/");
+		expect(projectScope).toContain("repo property");
 	});
 
 	it("includes a contributor code of conduct", () => {
