@@ -28,6 +28,7 @@ The toolkit is built on standard browser APIs, but individual diagnostics depend
 - Best support is typically in Chromium-based browsers
 - Device mappings can vary by OS and browser
 - Haptics / vibration support is less consistent than button and axis support
+- Multiple connected controllers are often reported correctly, but browser slot ordering and simultaneous updates can vary across browsers and operating systems
 
 ### Keyboard events
 

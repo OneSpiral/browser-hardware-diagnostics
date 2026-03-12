@@ -1,56 +1,51 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { readGamepad, BUTTON_LABELS, axisToPixel } from "$lib/utils/gamepad";
-	import { Gamepad2, AlertCircle } from "lucide-svelte";
+	import {
+		BUTTON_LABELS,
+		axisToPixel,
+		readConnectedGamepads,
+		resolveActiveGamepad,
+	} from "$lib/utils/gamepad";
+	import { Gamepad2 } from "lucide-svelte";
 
-	interface ButtonState {
-		pressed: boolean;
-		value: number;
-	}
-
-	let connected = $state(false);
-	let gamepadId = $state("");
-	let buttons = $state<ButtonState[]>([]);
-	let axes = $state<number[]>([]);
+	let connectedGamepads = $state<ReturnType<typeof readConnectedGamepads>>([]);
+	let selectedGamepadIndex = $state<number | null>(null);
 	let animFrame = 0;
 
 	const STICK_SIZE = 120;
 	const DOT_SIZE = 14;
 
+	const activeGamepad = $derived(resolveActiveGamepad(connectedGamepads, selectedGamepadIndex));
+	const connected = $derived(activeGamepad !== null);
+	const gamepadId = $derived(activeGamepad?.id ?? "");
+	const buttons = $derived(activeGamepad?.buttons ?? []);
+	const axes = $derived(activeGamepad?.axes ?? []);
+
+	function syncGamepads() {
+		connectedGamepads = readConnectedGamepads();
+		selectedGamepadIndex = resolveActiveGamepad(connectedGamepads, selectedGamepadIndex)?.index ?? null;
+	}
+
 	function poll() {
-		const snap = readGamepad(0);
-		if (snap) {
-			connected = true;
-			gamepadId = snap.id;
-			buttons = snap.buttons;
-			axes = snap.axes;
-		}
+		syncGamepads();
 		animFrame = requestAnimationFrame(poll);
 	}
 
 	onMount(() => {
-		const onConnect = () => {
-			connected = true;
-			poll();
-		};
-		const onDisconnect = () => {
-			connected = false;
-			gamepadId = "";
-			buttons = [];
-			axes = [];
+		const onGamepadChange = () => {
+			syncGamepads();
 		};
 
-		window.addEventListener("gamepadconnected", onConnect);
-		window.addEventListener("gamepaddisconnected", onDisconnect);
+		window.addEventListener("gamepadconnected", onGamepadChange);
+		window.addEventListener("gamepaddisconnected", onGamepadChange);
 
-		// Check if already connected
-		const gps = navigator.getGamepads();
-		if (gps[0]) onConnect();
+		syncGamepads();
+		poll();
 
 		return () => {
 			cancelAnimationFrame(animFrame);
-			window.removeEventListener("gamepadconnected", onConnect);
-			window.removeEventListener("gamepaddisconnected", onDisconnect);
+			window.removeEventListener("gamepadconnected", onGamepadChange);
+			window.removeEventListener("gamepaddisconnected", onGamepadChange);
 		};
 	});
 
@@ -82,7 +77,7 @@
 			Gamepad Tester
 		</h1>
 		<p class="text-text-muted">
-			Connect your controller and press any button to start testing.
+			Connect one or more controllers, then choose which slot to inspect.
 		</p>
 	</div>
 
@@ -99,11 +94,43 @@
 			</p>
 		</div>
 	{:else}
+		<section class="mb-6">
+			<div class="mb-3 flex items-center justify-between gap-3">
+				<h2 class="text-lg font-semibold">Connected Controllers</h2>
+				<span class="text-text-muted text-xs">
+					{connectedGamepads.length} connected
+				</span>
+			</div>
+			<div class="grid gap-3 sm:grid-cols-2">
+				{#each connectedGamepads as gamepad}
+					<button
+						type="button"
+						onclick={() => (selectedGamepadIndex = gamepad.index)}
+						class="rounded-xl border p-4 text-left transition-colors {selectedGamepadIndex === gamepad.index
+							? 'border-brand bg-brand/10 text-text'
+							: 'border-surface-lighter bg-surface-light text-text-muted hover:bg-surface'}"
+						aria-pressed={selectedGamepadIndex === gamepad.index}
+					>
+						<div class="mb-1 flex items-center justify-between gap-3">
+							<span class="font-medium text-text">Controller {gamepad.index + 1}</span>
+							<span class="text-xs">Browser slot {gamepad.index}</span>
+						</div>
+						<p class="truncate text-xs">{gamepad.id}</p>
+					</button>
+				{/each}
+			</div>
+			<p class="text-text-muted mt-3 text-xs">
+				Multiple connected controllers are usually exposed by the Gamepad API, but slot ordering
+				and simultaneous reporting can vary by browser and OS.
+			</p>
+		</section>
+
 		<!-- Gamepad Info -->
 		<div class="bg-surface-light mb-6 rounded-xl p-4">
-			<div class="flex items-center gap-2">
+			<div class="flex flex-wrap items-center gap-2">
 				<span class="bg-success h-2.5 w-2.5 rounded-full"></span>
-				<span class="text-sm font-medium">Connected</span>
+				<span class="text-sm font-medium">Active Controller</span>
+				<span class="text-text-muted text-xs">— Controller {(selectedGamepadIndex ?? 0) + 1}</span>
 				<span class="text-text-muted truncate text-xs">— {gamepadId}</span>
 			</div>
 		</div>
@@ -222,7 +249,12 @@
 		<details class="bg-surface-light rounded-xl p-4">
 			<summary class="text-text-muted cursor-pointer text-sm font-medium">Raw Data</summary>
 			<pre class="text-text-muted mt-3 overflow-x-auto text-xs">{JSON.stringify(
-					{ buttons: buttons.map((b, i) => ({ label: buttonLabel(i), ...b })), axes },
+					{
+						activeController: selectedGamepadIndex,
+						connectedControllers: connectedGamepads.map(({ id, index }) => ({ id, index })),
+						buttons: buttons.map((b, i) => ({ label: buttonLabel(i), ...b })),
+						axes,
+					},
 					null,
 					2,
 				)}</pre>

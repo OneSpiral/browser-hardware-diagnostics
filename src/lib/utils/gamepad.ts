@@ -27,18 +27,41 @@ export interface GamepadSnapshot {
 	timestamp: number;
 }
 
+function snapshotGamepad(gamepad: Gamepad): GamepadSnapshot {
+	return {
+		id: gamepad.id,
+		index: gamepad.index,
+		buttons: gamepad.buttons.map((b) => ({ pressed: b.pressed, value: b.value })),
+		axes: gamepad.axes.map((a) => a),
+		timestamp: gamepad.timestamp,
+	};
+}
+
 /** Read current state of a connected gamepad */
 export function readGamepad(index: number): GamepadSnapshot | null {
 	const gp = navigator.getGamepads()[index];
 	if (!gp) return null;
+	return snapshotGamepad(gp);
+}
 
-	return {
-		id: gp.id,
-		index: gp.index,
-		buttons: gp.buttons.map((b) => ({ pressed: b.pressed, value: b.value })),
-		axes: gp.axes.map((a) => a),
-		timestamp: gp.timestamp,
-	};
+/** Read snapshots for all currently connected gamepads */
+export function readConnectedGamepads(): GamepadSnapshot[] {
+	return Array.from(navigator.getGamepads())
+		.filter((gamepad): gamepad is Gamepad => gamepad !== null)
+		.map(snapshotGamepad);
+}
+
+/** Resolve the active controller from the current connected snapshots */
+export function resolveActiveGamepad(
+	snapshots: GamepadSnapshot[],
+	selectedIndex: number | null,
+): GamepadSnapshot | null {
+	if (snapshots.length === 0) return null;
+	if (selectedIndex !== null) {
+		const selected = snapshots.find((snapshot) => snapshot.index === selectedIndex);
+		if (selected) return selected;
+	}
+	return snapshots[0];
 }
 
 /** Calculate deadzone percentage from axis values */

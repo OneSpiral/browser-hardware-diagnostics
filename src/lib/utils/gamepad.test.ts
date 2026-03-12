@@ -1,5 +1,15 @@
-import { describe, it, expect } from "vitest";
-import { BUTTON_LABELS, calcDeadzone, axisToPixel } from "./gamepad";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import {
+	BUTTON_LABELS,
+	axisToPixel,
+	calcDeadzone,
+	readConnectedGamepads,
+	resolveActiveGamepad,
+} from "./gamepad";
+
+afterEach(() => {
+	vi.unstubAllGlobals();
+});
 
 describe("gamepad utils", () => {
 	describe("BUTTON_LABELS", () => {
@@ -12,6 +22,54 @@ describe("gamepad utils", () => {
 			expect(BUTTON_LABELS[1]).toBe("B");
 			expect(BUTTON_LABELS[2]).toBe("X");
 			expect(BUTTON_LABELS[3]).toBe("Y");
+		});
+	});
+
+	describe("readConnectedGamepads", () => {
+		it("returns snapshots for all connected controller slots", () => {
+			vi.stubGlobal("navigator", {
+				getGamepads: () => [
+					{
+						id: "Pad A",
+						index: 0,
+						buttons: [{ pressed: true, value: 1 }],
+						axes: [0.25, -0.5],
+						timestamp: 10,
+					},
+					null,
+					{
+						id: "Pad B",
+						index: 2,
+						buttons: [{ pressed: false, value: 0 }],
+						axes: [0, 1],
+						timestamp: 20,
+					},
+				],
+			});
+
+			const snapshots = readConnectedGamepads();
+			expect(snapshots).toHaveLength(2);
+			expect(snapshots[0]).toMatchObject({ id: "Pad A", index: 0, axes: [0.25, -0.5] });
+			expect(snapshots[1]).toMatchObject({ id: "Pad B", index: 2, axes: [0, 1] });
+		});
+	});
+
+	describe("resolveActiveGamepad", () => {
+		const snapshots = [
+			{ id: "Pad A", index: 0, buttons: [], axes: [], timestamp: 1 },
+			{ id: "Pad B", index: 2, buttons: [], axes: [], timestamp: 2 },
+		];
+
+		it("returns the selected controller when its slot is still connected", () => {
+			expect(resolveActiveGamepad(snapshots, 2)?.id).toBe("Pad B");
+		});
+
+		it("falls back to the first connected controller when the selected slot disappears", () => {
+			expect(resolveActiveGamepad(snapshots, 5)?.id).toBe("Pad A");
+		});
+
+		it("returns null when no controllers are connected", () => {
+			expect(resolveActiveGamepad([], 0)).toBeNull();
 		});
 	});
 
