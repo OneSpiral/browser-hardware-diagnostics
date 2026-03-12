@@ -3,6 +3,7 @@ import {
 	GITHUB_REPOSITORY_URL,
 	SITE_NAME,
 	SPONSOR_NAME,
+	SPONSOR_PROFILE_URL,
 	SPONSOR_TAGLINE,
 } from "./site";
 
@@ -15,6 +16,10 @@ describe("site branding", () => {
 
 	it("uses the OneSpiral GitHub repository", () => {
 		expect(GITHUB_REPOSITORY_URL).toBe("https://github.com/OneSpiral/hwprobe");
+	});
+
+	it("links the sponsor profile", () => {
+		expect(SPONSOR_PROFILE_URL).toBe("https://github.com/OneSpiral");
 	});
 
 	it("presents OneSpiral as sponsor instead of owner copy", () => {

@@ -4,6 +4,7 @@
 		GITHUB_REPOSITORY_URL,
 		SITE_NAME,
 		SPONSOR_NAME,
+		SPONSOR_PROFILE_URL,
 		SPONSOR_TAGLINE,
 	} from "$lib/site";
 </script>
@@ -25,7 +26,16 @@
 				View technical solution on GitHub
 			</a>
 		</div>
-		<p class="mt-4 text-xs opacity-60">{SPONSOR_TAGLINE}</p>
+		<p class="mt-4 text-xs opacity-60">
+			<a
+				href={SPONSOR_PROFILE_URL}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="hover:text-brand-light transition-colors"
+			>
+				{SPONSOR_TAGLINE}
+			</a>
+		</p>
 		<p class="mt-1 text-xs opacity-40">{SITE_NAME} is independently branded and sponsored by {SPONSOR_NAME}.</p>
 	</div>
 </footer>

@@ -1,14 +1,20 @@
 # 🔧 HWProbe
 
+[![Live Site](https://img.shields.io/badge/live-hwprobe.com-6366f1)](https://hwprobe.com)
+[![Sponsor](https://img.shields.io/badge/sponsor-OneSpiral-111827)](https://github.com/OneSpiral)
+[![License: MIT](https://img.shields.io/badge/license-MIT-22c55e)](./LICENSE)
+
 **Open-source technical solution for browser-based hardware diagnostics.**
 
 👉 **[hwprobe.com](https://hwprobe.com)**
 
 Test your gamepad, keyboard, mouse, monitor, microphone & speakers — directly in the browser. No downloads. No data collection. 100% client-side.
 
-> Sponsored by **OneSpiral**.
+> Sponsored by **[OneSpiral](https://github.com/OneSpiral)**.
 >
 > This repository contains the open-source technical implementation. Production distribution, localization, content, and commercial layers are maintained separately.
+>
+> See [SPONSORING.md](./SPONSORING.md) for sponsorship positioning and repository boundaries.
 
 ## ✨ Features
 
