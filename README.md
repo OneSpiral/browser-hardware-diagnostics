@@ -68,6 +68,7 @@ If you want to help expand browser hardware diagnostics capabilities, start here
 - [CONTRIBUTING.md](./CONTRIBUTING.md)
 - [ARCHITECTURE.md](./ARCHITECTURE.md)
 - [ROADMAP.md](./ROADMAP.md)
+- [DISCUSSIONS.md](./DISCUSSIONS.md)
 - [Discussions](https://github.com/OneSpiral/browser-hardware-diagnostics/discussions)
 
 We want contributors to improve the toolkit itself — better diagnostics primitives, better browser compatibility, better test ergonomics, and better extensibility.

@@ -8,6 +8,7 @@ const sponsoringPath = resolve(root, "SPONSORING.md");
 const contributingPath = resolve(root, "CONTRIBUTING.md");
 const codeOfConductPath = resolve(root, "CODE_OF_CONDUCT.md");
 const codeownersPath = resolve(root, ".github/CODEOWNERS");
+const discussionsPath = resolve(root, "DISCUSSIONS.md");
 const securityPath = resolve(root, "SECURITY.md");
 const bugTemplatePath = resolve(root, ".github/ISSUE_TEMPLATE/bug-report.yml");
 const featureTemplatePath = resolve(root, ".github/ISSUE_TEMPLATE/feature-request.yml");
@@ -22,6 +23,7 @@ describe("repository sponsorship docs", () => {
 		expect(existsSync(contributingPath)).toBe(true);
 		expect(existsSync(codeOfConductPath)).toBe(true);
 		expect(existsSync(codeownersPath)).toBe(true);
+		expect(existsSync(discussionsPath)).toBe(true);
 		expect(existsSync(securityPath)).toBe(true);
 		expect(existsSync(architecturePath)).toBe(true);
 		expect(existsSync(roadmapPath)).toBe(true);
@@ -83,5 +85,12 @@ describe("repository sponsorship docs", () => {
 		expect(bugTemplate).toContain("Console output");
 		expect(featureTemplate).toContain("API surface");
 		expect(featureTemplate).toContain("Acceptance criteria");
+	});
+
+	it("documents how discussions should be used", () => {
+		const discussions = readFileSync(discussionsPath, "utf8");
+		expect(discussions).toContain("design ideas");
+		expect(discussions).toContain("security");
+		expect(discussions).toContain("browser compatibility");
 	});
 });
