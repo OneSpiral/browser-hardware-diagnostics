@@ -81,6 +81,9 @@ describe("repository sponsorship docs", () => {
 		expect(sponsoring).toContain("hwprobe.com");
 		expect(sponsoring).toContain("OneSpiral");
 		expect(sponsoring).toContain("separate");
+		expect(sponsoring).toContain("solutions");
+		expect(sponsoring).toContain("apps");
+		expect(sponsoring).toContain("labs");
 	});
 
 	it("wires GitHub funding metadata with a fallback maintainer profile link", () => {
@@ -95,7 +98,7 @@ describe("repository sponsorship docs", () => {
 		expect(license).toContain("Permission is hereby granted, free of charge");
 	});
 
-	it("surfaces maintainer, sponsor, community, and release positioning in the README", () => {
+	it("surfaces maintainer, sponsor, community, release, and workspace-layer positioning in the README", () => {
 		const readme = readFileSync(readmePath, "utf8");
 		expect(readme).toContain("browser hardware diagnostics toolkit");
 		expect(readme).toContain("Maintained by **[OneSpiral](https://github.com/OneSpiral)**");
@@ -105,6 +108,9 @@ describe("repository sponsorship docs", () => {
 		expect(readme).toContain("/releases");
 		expect(readme).toContain("TESTING_BOUNDARY.md");
 		expect(readme).toContain("private evaluation assets");
+		expect(readme).toContain("solutions");
+		expect(readme).toContain("apps");
+		expect(readme).toContain("labs");
 	});
 
 	it("describes how contributors can improve technical capabilities without exposing proprietary evals", () => {

@@ -40,6 +40,16 @@ The primary sponsored production deployment is:
 
 That site can sponsor the open-source project with high-quality backlinks, adoption proof, and real-world usage, while the repository stays neutral and open for broader community contribution.
 
+## Workspace layers
+
+We use a three-layer portfolio model:
+
+- **solutions** — reusable technical solutions that can be shared publicly
+- **apps** — branded products and monetized deployments built on top of solutions
+- **labs** — exploratory prototypes and research work that may later graduate into solutions or apps
+
+This repository belongs in **solutions**.
+
 ## Repository boundary
 
 This repository contains:

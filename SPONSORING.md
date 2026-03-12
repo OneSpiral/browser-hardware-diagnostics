@@ -18,6 +18,16 @@ That means:
 - maintainers and contributors collaborate in public on the diagnostics toolkit itself
 - private growth, monetization, SEO, localization, and distribution layers remain separate
 
+## Workspace layers
+
+Within the broader portfolio model:
+
+- **solutions** hold reusable technical solutions
+- **apps** hold branded product surfaces and monetized deployments
+- **labs** hold exploratory work until it is ready to graduate
+
+This repository belongs in **solutions**. Sponsored deployments such as **hwprobe.com** belong in **apps**. Early experiments can start in **labs** and graduate later.
+
 ## What belongs here
 
 This repository is for shared technical capabilities such as:
