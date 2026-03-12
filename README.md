@@ -69,6 +69,7 @@ If you want to help expand browser hardware diagnostics capabilities, start here
 - [ARCHITECTURE.md](./ARCHITECTURE.md)
 - [ROADMAP.md](./ROADMAP.md)
 - [TRIAGE.md](./TRIAGE.md)
+- [COMPATIBILITY.md](./COMPATIBILITY.md)
 - [DISCUSSIONS.md](./DISCUSSIONS.md)
 - [Discussions](https://github.com/OneSpiral/browser-hardware-diagnostics/discussions)
 - [Project board](https://github.com/users/OneSpiral/projects/3)

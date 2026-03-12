@@ -8,6 +8,7 @@ const sponsoringPath = resolve(root, "SPONSORING.md");
 const contributingPath = resolve(root, "CONTRIBUTING.md");
 const codeOfConductPath = resolve(root, "CODE_OF_CONDUCT.md");
 const codeownersPath = resolve(root, ".github/CODEOWNERS");
+const compatibilityPath = resolve(root, "COMPATIBILITY.md");
 const discussionsPath = resolve(root, "DISCUSSIONS.md");
 const triagePath = resolve(root, "TRIAGE.md");
 const securityPath = resolve(root, "SECURITY.md");
@@ -24,6 +25,7 @@ describe("repository sponsorship docs", () => {
 		expect(existsSync(contributingPath)).toBe(true);
 		expect(existsSync(codeOfConductPath)).toBe(true);
 		expect(existsSync(codeownersPath)).toBe(true);
+		expect(existsSync(compatibilityPath)).toBe(true);
 		expect(existsSync(discussionsPath)).toBe(true);
 		expect(existsSync(triagePath)).toBe(true);
 		expect(existsSync(securityPath)).toBe(true);
@@ -105,5 +107,26 @@ describe("repository sponsorship docs", () => {
 		expect(triage).toContain("priority: p1");
 		expect(triage).toContain("status: ready");
 		expect(triage).toContain("milestone");
+	});
+
+	it("publishes a browser compatibility matrix for all diagnostics modules", () => {
+		const compatibility = readFileSync(compatibilityPath, "utf8");
+		expect(compatibility).toContain("Chrome");
+		expect(compatibility).toContain("Edge");
+		expect(compatibility).toContain("Safari");
+		expect(compatibility).toContain("Firefox");
+		expect(compatibility).toContain("Gamepad");
+		expect(compatibility).toContain("Keyboard");
+		expect(compatibility).toContain("Mouse");
+		expect(compatibility).toContain("Monitor");
+		expect(compatibility).toContain("Microphone");
+		expect(compatibility).toContain("Speakers");
+		expect(compatibility).toContain("Gamepad API");
+		expect(compatibility).toContain("MediaDevices");
+	});
+
+	it("links the compatibility matrix from the README", () => {
+		const readme = readFileSync(readmePath, "utf8");
+		expect(readme).toContain("[COMPATIBILITY.md](./COMPATIBILITY.md)");
 	});
 });
