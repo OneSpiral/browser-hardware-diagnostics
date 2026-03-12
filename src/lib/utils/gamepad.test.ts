@@ -1,4 +1,10 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
+import {
+	createGamepadButtonStub,
+	createGamepadStub,
+	restoreBrowserMocks,
+	stubNavigatorGamepads,
+} from "../test-fixtures/browser";
 import {
 	BUTTON_LABELS,
 	axisToPixel,
@@ -8,7 +14,7 @@ import {
 } from "./gamepad";
 
 afterEach(() => {
-	vi.unstubAllGlobals();
+	restoreBrowserMocks();
 });
 
 describe("gamepad utils", () => {
@@ -27,25 +33,23 @@ describe("gamepad utils", () => {
 
 	describe("readConnectedGamepads", () => {
 		it("returns snapshots for all connected controller slots", () => {
-			vi.stubGlobal("navigator", {
-				getGamepads: () => [
-					{
-						id: "Pad A",
-						index: 0,
-						buttons: [{ pressed: true, value: 1 }],
-						axes: [0.25, -0.5],
-						timestamp: 10,
-					},
-					null,
-					{
-						id: "Pad B",
-						index: 2,
-						buttons: [{ pressed: false, value: 0 }],
-						axes: [0, 1],
-						timestamp: 20,
-					},
-				],
-			});
+			stubNavigatorGamepads([
+				createGamepadStub({
+					id: "Pad A",
+					index: 0,
+					buttons: [createGamepadButtonStub({ pressed: true, value: 1 })],
+					axes: [0.25, -0.5],
+					timestamp: 10,
+				}),
+				null,
+				createGamepadStub({
+					id: "Pad B",
+					index: 2,
+					buttons: [createGamepadButtonStub()],
+					axes: [0, 1],
+					timestamp: 20,
+				}),
+			]);
 
 			const snapshots = readConnectedGamepads();
 			expect(snapshots).toHaveLength(2);
