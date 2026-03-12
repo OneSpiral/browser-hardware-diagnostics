@@ -74,6 +74,7 @@ If you want to help expand browser hardware diagnostics capabilities, start here
 - [COMPATIBILITY.md](./COMPATIBILITY.md)
 - [MEASUREMENT_LIMITS.md](./MEASUREMENT_LIMITS.md)
 - [PERMISSION_CHECKLIST.md](./PERMISSION_CHECKLIST.md)
+- [CHANGELOG.md](./CHANGELOG.md)
 - [DISCUSSIONS.md](./DISCUSSIONS.md)
 - [Discussions](https://github.com/OneSpiral/browser-hardware-diagnostics/discussions)
 - [Project board](https://github.com/users/OneSpiral/projects/3)

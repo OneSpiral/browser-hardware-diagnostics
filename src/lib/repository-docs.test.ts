@@ -19,8 +19,10 @@ const bugTemplatePath = resolve(root, ".github/ISSUE_TEMPLATE/bug-report.yml");
 const featureTemplatePath = resolve(root, ".github/ISSUE_TEMPLATE/feature-request.yml");
 const ciWorkflowPath = resolve(root, ".github/workflows/ci.yml");
 const dependabotPath = resolve(root, ".github/dependabot.yml");
+const releaseConfigPath = resolve(root, ".github/release.yml");
 const architecturePath = resolve(root, "ARCHITECTURE.md");
 const roadmapPath = resolve(root, "ROADMAP.md");
+const changelogPath = resolve(root, "CHANGELOG.md");
 const fundingPath = resolve(root, ".github/FUNDING.yml");
 const packageJsonPath = resolve(root, "package.json");
 const readmePath = resolve(root, "README.md");
@@ -40,8 +42,10 @@ describe("repository sponsorship docs", () => {
 		expect(existsSync(licensePath)).toBe(true);
 		expect(existsSync(ciWorkflowPath)).toBe(true);
 		expect(existsSync(dependabotPath)).toBe(true);
+		expect(existsSync(releaseConfigPath)).toBe(true);
 		expect(existsSync(architecturePath)).toBe(true);
 		expect(existsSync(roadmapPath)).toBe(true);
+		expect(existsSync(changelogPath)).toBe(true);
 	});
 
 	it("explains that OSS is the technical solution and the branded website is a sponsor", () => {
@@ -119,9 +123,10 @@ describe("repository sponsorship docs", () => {
 		expect(featureTemplate).toContain("Non-goals");
 	});
 
-	it("includes GitHub automation for CI and dependency updates", () => {
+	it("includes GitHub automation for CI, dependency updates, and release notes", () => {
 		const ciWorkflow = readFileSync(ciWorkflowPath, "utf8");
 		const dependabot = readFileSync(dependabotPath, "utf8");
+		const releaseConfig = readFileSync(releaseConfigPath, "utf8");
 		expect(ciWorkflow).toContain("pull_request");
 		expect(ciWorkflow).toContain("push");
 		expect(ciWorkflow).toContain("pnpm install");
@@ -131,6 +136,9 @@ describe("repository sponsorship docs", () => {
 		expect(dependabot).toContain("package-ecosystem: npm");
 		expect(dependabot).toContain("package-ecosystem: github-actions");
 		expect(dependabot).toContain('directory: "/"');
+		expect(releaseConfig).toContain("changelog");
+		expect(releaseConfig).toContain("categories");
+		expect(releaseConfig).toContain("enhancement");
 	});
 
 	it("pins known vulnerable transitive dependencies through pnpm overrides when needed", () => {
@@ -145,6 +153,16 @@ describe("repository sponsorship docs", () => {
 		expect(discussions).toContain("design ideas");
 		expect(discussions).toContain("security");
 		expect(discussions).toContain("browser compatibility");
+		expect(discussions).toContain("Announcements");
+	});
+
+	it("publishes a changelog for public milestones", () => {
+		const changelog = readFileSync(changelogPath, "utf8");
+		expect(changelog).toContain("Unreleased");
+		expect(changelog).toContain("Added");
+		expect(changelog).toContain("multi-controller");
+		expect(changelog).toContain("haptics");
+		expect(changelog).toContain("locale-aware");
 	});
 
 	it("documents public issue writing conventions", () => {
@@ -211,10 +229,11 @@ describe("repository sponsorship docs", () => {
 		expect(checklist).toContain("microphone");
 	});
 
-	it("links compatibility, measurement, and permission docs from the README", () => {
+	it("links compatibility, measurement, permission, and changelog docs from the README", () => {
 		const readme = readFileSync(readmePath, "utf8");
 		expect(readme).toContain("[COMPATIBILITY.md](./COMPATIBILITY.md)");
 		expect(readme).toContain("[MEASUREMENT_LIMITS.md](./MEASUREMENT_LIMITS.md)");
 		expect(readme).toContain("[PERMISSION_CHECKLIST.md](./PERMISSION_CHECKLIST.md)");
+		expect(readme).toContain("[CHANGELOG.md](./CHANGELOG.md)");
 	});
 });

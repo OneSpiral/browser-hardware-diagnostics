@@ -12,6 +12,7 @@ Discussions are a good place for:
 - measurement methodology questions
 - contributor onboarding questions
 - roadmap exploration before opening a scoped issue
+- milestone updates and public progress posts in **Announcements**
 
 ## What should become an issue
 
@@ -30,3 +31,5 @@ If something may be security-sensitive, follow the private reporting path in [SE
 ## Goal
 
 The purpose of Discussions is to help the community refine technical ideas before they turn into issues, pull requests, and reusable browser diagnostics capabilities.
+
+Use the **Announcements** category for maintainer-authored milestone updates, release-style summaries, and other public progress checkpoints.

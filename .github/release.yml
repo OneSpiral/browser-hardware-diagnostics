@@ -1,0 +1,27 @@
+changelog:
+  exclude:
+    labels:
+      - duplicate
+      - invalid
+      - question
+      - wontfix
+  categories:
+    - title: Features
+      labels:
+        - enhancement
+    - title: Documentation
+      labels:
+        - documentation
+    - title: Accessibility
+      labels:
+        - a11y
+    - title: Compatibility and measurement
+      labels:
+        - compatibility
+        - measurement
+    - title: Tooling
+      labels:
+        - tooling
+    - title: Security
+      labels:
+        - security
