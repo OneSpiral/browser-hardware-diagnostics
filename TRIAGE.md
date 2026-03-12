@@ -19,6 +19,28 @@ This document explains how maintainers and contributors should use labels and ro
 - **security** — security-sensitive review or documentation work
 - **public-boundary** — open-source vs private deployment boundary questions
 
+### Priority labels
+
+- **priority: p0** — critical work
+- **priority: p1** — high-priority work
+- **priority: p2** — medium-priority work
+- **priority: p3** — low-priority work
+
+### Status labels
+
+- **status: ready** — scoped and ready for contribution
+- **status: needs-design** — needs design discussion before implementation
+- **status: in-progress** — actively being worked on
+- **status: blocked** — blocked on another decision or dependency
+
+## Milestones
+
+Use milestone buckets to group work:
+
+- **Foundation & Governance**
+- **Compatibility & Measurement**
+- **Accessibility & Contributor Experience**
+
 ## Routing rules
 
 - use **Discussions** for open-ended design exploration
@@ -32,6 +54,12 @@ This document explains how maintainers and contributors should use labels and ro
 3. mark onboarding-friendly work as **good first issue**
 4. mark broader contribution-ready work as **help wanted**
 5. keep anything private-deployment-specific out of the public toolkit backlog
+
+## Project board
+
+The current public backlog lives in the project board:
+
+- https://github.com/users/OneSpiral/projects/3
 
 ## Boundary reminder
 

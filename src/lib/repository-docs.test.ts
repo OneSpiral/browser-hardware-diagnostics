@@ -102,5 +102,8 @@ describe("repository sponsorship docs", () => {
 		expect(triage).toContain("help wanted");
 		expect(triage).toContain("security");
 		expect(triage).toContain("compatibility");
+		expect(triage).toContain("priority: p1");
+		expect(triage).toContain("status: ready");
+		expect(triage).toContain("milestone");
 	});
 });

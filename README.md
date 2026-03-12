@@ -71,6 +71,7 @@ If you want to help expand browser hardware diagnostics capabilities, start here
 - [TRIAGE.md](./TRIAGE.md)
 - [DISCUSSIONS.md](./DISCUSSIONS.md)
 - [Discussions](https://github.com/OneSpiral/browser-hardware-diagnostics/discussions)
+- [Project board](https://github.com/users/OneSpiral/projects/3)
 
 We want contributors to improve the toolkit itself — better diagnostics primitives, better browser compatibility, better test ergonomics, and better extensibility.
 
