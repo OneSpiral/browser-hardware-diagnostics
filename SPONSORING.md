@@ -42,4 +42,11 @@ If you are contributing here, contribute to the technical solution itself.
 If you are looking for partnerships, distribution, localization, or sponsorship discussions, start from the sponsor profile:
 
 - **Sponsor:** https://github.com/OneSpiral
+- **GitHub Sponsors:** https://github.com/sponsors/OneSpiral
 - **Live product:** https://hwprobe.com
+
+## GitHub Sponsors status
+
+This repository is wired for GitHub Sponsors via `.github/FUNDING.yml`.
+
+If the `OneSpiral` account has not enabled GitHub Sponsors yet, GitHub may fall back to the profile page. The funding metadata and sponsor CTA are still kept in place so the repository is ready as soon as account-level sponsor onboarding is completed.

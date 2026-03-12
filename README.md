@@ -16,6 +16,15 @@ Test your gamepad, keyboard, mouse, monitor, microphone & speakers — directly 
 >
 > See [SPONSORING.md](./SPONSORING.md) for sponsorship positioning and repository boundaries.
 
+## ❤️ Support the sponsor
+
+If this technical solution is useful, support the sponsor behind it:
+
+- **Sponsor profile:** [OneSpiral](https://github.com/OneSpiral)
+- **GitHub Sponsors URL:** https://github.com/sponsors/OneSpiral
+
+If GitHub Sponsors is not yet enabled on the account, the repository still keeps the sponsor link and funding metadata ready.
+
 ## ✨ Features
 
 | Tool | Description |
