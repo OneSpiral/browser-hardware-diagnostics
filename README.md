@@ -70,6 +70,7 @@ If you want to help expand browser hardware diagnostics capabilities, start here
 - [ARCHITECTURE.md](./ARCHITECTURE.md)
 - [ROADMAP.md](./ROADMAP.md)
 - [TRIAGE.md](./TRIAGE.md)
+- [A11Y_AUDIT.md](./A11Y_AUDIT.md)
 - [COMPATIBILITY.md](./COMPATIBILITY.md)
 - [MEASUREMENT_LIMITS.md](./MEASUREMENT_LIMITS.md)
 - [PERMISSION_CHECKLIST.md](./PERMISSION_CHECKLIST.md)

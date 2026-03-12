@@ -12,8 +12,20 @@
 	let lastKey = $state("");
 	let totalPresses = $state(0);
 
+	const interactiveSelector =
+		"button, a, input, select, textarea, summary, audio, [contenteditable='true']";
+
+	function shouldIgnoreKeyCapture(e: KeyboardEvent) {
+		if (e.key === "Tab" || e.key === "Escape" || e.metaKey || e.ctrlKey || e.altKey) {
+			return true;
+		}
+
+		const target = e.target;
+		return target instanceof HTMLElement && target.closest(interactiveSelector) !== null;
+	}
+
 	function handleKeyDown(e: KeyboardEvent) {
-		e.preventDefault();
+		if (shouldIgnoreKeyCapture(e)) return;
 		const code = e.code;
 		lastKey = code;
 
@@ -29,7 +41,7 @@
 	}
 
 	function handleKeyUp(e: KeyboardEvent) {
-		e.preventDefault();
+		if (shouldIgnoreKeyCapture(e)) return;
 		const existing = keys.get(e.code);
 		if (existing) {
 			existing.pressed = false;
@@ -76,7 +88,10 @@
 			<Keyboard class="text-brand h-8 w-8" />
 			Keyboard Tester
 		</h1>
-		<p class="text-text-muted">Press any key to test it. All keys light up when pressed.</p>
+		<p class="text-text-muted">
+			Press any key to test it. All keys light up when pressed. Tab, Escape, and browser
+			shortcuts remain available for navigation.
+		</p>
 	</div>
 
 	<!-- Stats Bar -->

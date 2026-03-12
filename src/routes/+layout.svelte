@@ -8,8 +8,9 @@
 </script>
 
 <div class="flex min-h-screen flex-col">
+	<a class="skip-link" href="#main-content">Skip to main content</a>
 	<Nav />
-	<main class="flex-1">
+	<main id="main-content" tabindex="-1" class="flex-1">
 		{@render children()}
 	</main>
 	<Footer />

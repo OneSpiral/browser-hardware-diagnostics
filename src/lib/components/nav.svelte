@@ -29,18 +29,25 @@
 	}
 </script>
 
-<nav class="bg-surface-light border-surface-lighter sticky top-0 z-50 border-b">
+<nav aria-label="Primary" class="bg-surface-light border-surface-lighter sticky top-0 z-50 border-b">
 	<div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
-		<a href="/" class="flex items-center gap-2 text-lg font-bold" onclick={closeMobile}>
+		<a
+			href="/"
+			class="flex items-center gap-2 text-lg font-bold"
+			onclick={closeMobile}
+			aria-current={page.url.pathname === "/" ? "page" : undefined}
+		>
 			<Gauge class="text-brand h-6 w-6" />
 			<span>Diagnostics</span>
 		</a>
 
 		<button
+			type="button"
 			class="rounded-lg p-2 md:hidden"
 			onclick={() => (mobileOpen = !mobileOpen)}
 			aria-label={mobileOpen ? "Close menu" : "Open menu"}
 			aria-expanded={mobileOpen}
+			aria-controls="mobile-navigation"
 		>
 			{#if mobileOpen}
 				<X class="h-5 w-5" />
@@ -58,6 +65,7 @@
 						.url.pathname === `/${tool.slug}`
 						? 'bg-brand/20 text-brand-light'
 						: 'text-text-muted'}"
+					aria-current={page.url.pathname === `/${tool.slug}` ? "page" : undefined}
 				>
 					{#if Icon}
 						<Icon class="h-4 w-4" />
@@ -69,7 +77,7 @@
 	</div>
 
 	{#if mobileOpen}
-		<div class="border-surface-lighter border-t px-4 pb-4 md:hidden">
+		<div id="mobile-navigation" class="border-surface-lighter border-t px-4 pb-4 md:hidden">
 			{#each tools as tool}
 				{@const Icon = iconMap[tool.icon]}
 				<a
@@ -79,6 +87,7 @@
 						? 'bg-brand/20 text-brand-light'
 						: 'text-text-muted'}"
 					onclick={closeMobile}
+					aria-current={page.url.pathname === `/${tool.slug}` ? "page" : undefined}
 				>
 					{#if Icon}
 						<Icon class="h-5 w-5" />

@@ -14,3 +14,45 @@
 	--color-warning: #f59e0b;
 	--color-danger: #ef4444;
 }
+
+@layer base {
+	html {
+		color-scheme: dark;
+	}
+
+	body {
+		min-height: 100%;
+		background-color: var(--color-surface);
+		color: var(--color-text);
+		font-family: var(--font-sans);
+	}
+
+	.skip-link {
+		position: absolute;
+		left: 1rem;
+		top: 1rem;
+		z-index: 100;
+		border-radius: 0.75rem;
+		background-color: var(--color-brand-dark);
+		padding: 0.75rem 1rem;
+		font-weight: 600;
+		color: white;
+		transform: translateY(-220%);
+		transition: transform 150ms ease;
+	}
+
+	.skip-link:focus-visible {
+		transform: translateY(0);
+	}
+
+	a:focus-visible,
+	button:focus-visible,
+	summary:focus-visible,
+	input:focus-visible,
+	[tabindex]:not([tabindex="-1"]):focus-visible {
+		outline: 2px solid var(--color-brand-light);
+		outline-offset: 3px;
+		border-radius: 0.75rem;
+		box-shadow: 0 0 0 4px rgb(99 102 241 / 0.2);
+	}
+}

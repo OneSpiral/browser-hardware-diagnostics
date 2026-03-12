@@ -168,12 +168,14 @@
 			<div class="grid grid-cols-2 gap-2">
 				{#each PRESETS as preset}
 					<button
+						type="button"
 						onclick={() => {
 							updateFreq(preset.freq);
 							if (!playing) startTone();
 						}}
 						class="hover:bg-surface-lighter rounded-lg px-3 py-2.5 text-left text-sm transition-colors
-							{frequency === preset.freq && playing ? 'bg-brand/20 text-brand-light' : 'bg-surface text-text-muted'}"
+							{frequency === preset.freq ? 'bg-brand/20 text-brand-light' : 'bg-surface text-text-muted'}"
+						aria-pressed={frequency === preset.freq}
 					>
 						{preset.label}
 					</button>
@@ -244,9 +246,11 @@
 					<div class="mb-4 grid grid-cols-2 gap-2">
 						{#each WAVEFORMS as w}
 							<button
+								type="button"
 								onclick={() => updateWaveform(w.value)}
 								class="rounded-lg px-3 py-2 text-sm transition-colors
 									{waveform === w.value ? 'bg-brand/20 text-brand-light' : 'bg-surface text-text-muted hover:bg-surface-lighter'}"
+								aria-pressed={waveform === w.value}
 							>
 								{w.label}
 							</button>
