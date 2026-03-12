@@ -28,5 +28,10 @@
 		"@tailwindcss/vite": "^4.2.1",
 		"lucide-svelte": "^0.577.0",
 		"tailwindcss": "^4.2.1"
+	},
+	"pnpm": {
+		"overrides": {
+			"cookie": "0.7.2"
+		}
 	}
 }

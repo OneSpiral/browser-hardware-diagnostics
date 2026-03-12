@@ -22,6 +22,7 @@ const dependabotPath = resolve(root, ".github/dependabot.yml");
 const architecturePath = resolve(root, "ARCHITECTURE.md");
 const roadmapPath = resolve(root, "ROADMAP.md");
 const fundingPath = resolve(root, ".github/FUNDING.yml");
+const packageJsonPath = resolve(root, "package.json");
 const readmePath = resolve(root, "README.md");
 
 describe("repository sponsorship docs", () => {
@@ -130,6 +131,13 @@ describe("repository sponsorship docs", () => {
 		expect(dependabot).toContain("package-ecosystem: npm");
 		expect(dependabot).toContain("package-ecosystem: github-actions");
 		expect(dependabot).toContain('directory: "/"');
+	});
+
+	it("pins known vulnerable transitive dependencies through pnpm overrides when needed", () => {
+		const packageJson = readFileSync(packageJsonPath, "utf8");
+		expect(packageJson).toContain('"pnpm"');
+		expect(packageJson).toContain('"overrides"');
+		expect(packageJson).toContain('"cookie"');
 	});
 
 	it("documents how discussions should be used", () => {
