@@ -14,8 +14,11 @@ const permissionChecklistPath = resolve(root, "PERMISSION_CHECKLIST.md");
 const discussionsPath = resolve(root, "DISCUSSIONS.md");
 const triagePath = resolve(root, "TRIAGE.md");
 const securityPath = resolve(root, "SECURITY.md");
+const licensePath = resolve(root, "LICENSE");
 const bugTemplatePath = resolve(root, ".github/ISSUE_TEMPLATE/bug-report.yml");
 const featureTemplatePath = resolve(root, ".github/ISSUE_TEMPLATE/feature-request.yml");
+const ciWorkflowPath = resolve(root, ".github/workflows/ci.yml");
+const dependabotPath = resolve(root, ".github/dependabot.yml");
 const architecturePath = resolve(root, "ARCHITECTURE.md");
 const roadmapPath = resolve(root, "ROADMAP.md");
 const fundingPath = resolve(root, ".github/FUNDING.yml");
@@ -33,6 +36,9 @@ describe("repository sponsorship docs", () => {
 		expect(existsSync(discussionsPath)).toBe(true);
 		expect(existsSync(triagePath)).toBe(true);
 		expect(existsSync(securityPath)).toBe(true);
+		expect(existsSync(licensePath)).toBe(true);
+		expect(existsSync(ciWorkflowPath)).toBe(true);
+		expect(existsSync(dependabotPath)).toBe(true);
 		expect(existsSync(architecturePath)).toBe(true);
 		expect(existsSync(roadmapPath)).toBe(true);
 	});
@@ -51,12 +57,19 @@ describe("repository sponsorship docs", () => {
 		expect(funding).toContain("https://github.com/OneSpiral");
 	});
 
+	it("includes a standard MIT license file", () => {
+		const license = readFileSync(licensePath, "utf8");
+		expect(license).toContain("MIT License");
+		expect(license).toContain("Permission is hereby granted, free of charge");
+	});
+
 	it("surfaces maintainer, sponsor, and community positioning in the README", () => {
 		const readme = readFileSync(readmePath, "utf8");
 		expect(readme).toContain("browser hardware diagnostics toolkit");
 		expect(readme).toContain("Maintained by **[OneSpiral](https://github.com/OneSpiral)**");
 		expect(readme).toContain("Sponsored by **[hwprobe.com](https://hwprobe.com)**");
 		expect(readme).toContain("community");
+		expect(readme).toContain("actions/workflows/ci.yml");
 	});
 
 	it("describes how contributors can improve technical capabilities", () => {
@@ -103,6 +116,20 @@ describe("repository sponsorship docs", () => {
 		expect(featureTemplate).toContain("API surface");
 		expect(featureTemplate).toContain("Acceptance criteria");
 		expect(featureTemplate).toContain("Non-goals");
+	});
+
+	it("includes GitHub automation for CI and dependency updates", () => {
+		const ciWorkflow = readFileSync(ciWorkflowPath, "utf8");
+		const dependabot = readFileSync(dependabotPath, "utf8");
+		expect(ciWorkflow).toContain("pull_request");
+		expect(ciWorkflow).toContain("push");
+		expect(ciWorkflow).toContain("pnpm install");
+		expect(ciWorkflow).toContain("npx vitest run");
+		expect(ciWorkflow).toContain("pnpm check");
+		expect(ciWorkflow).toContain("pnpm build");
+		expect(dependabot).toContain("package-ecosystem: npm");
+		expect(dependabot).toContain("package-ecosystem: github-actions");
+		expect(dependabot).toContain('directory: "/"');
 	});
 
 	it("documents how discussions should be used", () => {

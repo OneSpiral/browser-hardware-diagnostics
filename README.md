@@ -1,5 +1,6 @@
 # Browser Hardware Diagnostics
 
+[![CI](https://github.com/OneSpiral/browser-hardware-diagnostics/actions/workflows/ci.yml/badge.svg)](https://github.com/OneSpiral/browser-hardware-diagnostics/actions/workflows/ci.yml)
 [![Live Sponsor](https://img.shields.io/badge/sponsor-hwprobe.com-6366f1)](https://hwprobe.com)
 [![Maintainer](https://img.shields.io/badge/maintainer-OneSpiral-111827)](https://github.com/OneSpiral)
 [![License: MIT](https://img.shields.io/badge/license-MIT-22c55e)](./LICENSE)
