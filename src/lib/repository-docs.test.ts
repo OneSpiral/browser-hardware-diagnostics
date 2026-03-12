@@ -9,6 +9,7 @@ const contributingPath = resolve(root, "CONTRIBUTING.md");
 const codeOfConductPath = resolve(root, "CODE_OF_CONDUCT.md");
 const codeownersPath = resolve(root, ".github/CODEOWNERS");
 const discussionsPath = resolve(root, "DISCUSSIONS.md");
+const triagePath = resolve(root, "TRIAGE.md");
 const securityPath = resolve(root, "SECURITY.md");
 const bugTemplatePath = resolve(root, ".github/ISSUE_TEMPLATE/bug-report.yml");
 const featureTemplatePath = resolve(root, ".github/ISSUE_TEMPLATE/feature-request.yml");
@@ -24,6 +25,7 @@ describe("repository sponsorship docs", () => {
 		expect(existsSync(codeOfConductPath)).toBe(true);
 		expect(existsSync(codeownersPath)).toBe(true);
 		expect(existsSync(discussionsPath)).toBe(true);
+		expect(existsSync(triagePath)).toBe(true);
 		expect(existsSync(securityPath)).toBe(true);
 		expect(existsSync(architecturePath)).toBe(true);
 		expect(existsSync(roadmapPath)).toBe(true);
@@ -92,5 +94,13 @@ describe("repository sponsorship docs", () => {
 		expect(discussions).toContain("design ideas");
 		expect(discussions).toContain("security");
 		expect(discussions).toContain("browser compatibility");
+	});
+
+	it("documents triage rules for labels and collaboration flow", () => {
+		const triage = readFileSync(triagePath, "utf8");
+		expect(triage).toContain("good first issue");
+		expect(triage).toContain("help wanted");
+		expect(triage).toContain("security");
+		expect(triage).toContain("compatibility");
 	});
 });
