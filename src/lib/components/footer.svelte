@@ -20,7 +20,7 @@
 			</a>
 		</div>
 		<p class="mt-4 text-xs opacity-60">
-			© {new Date().getFullYear()} MentalCraft, LLC. All rights reserved.
+			© {new Date().getFullYear()} nicepkg. Open source on GitHub.
 		</p>
 	</div>
 </footer>
