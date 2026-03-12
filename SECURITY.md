@@ -23,6 +23,12 @@ Public issues are fine for non-sensitive bugs, compatibility issues, and normal 
 
 If the report could expose a real vulnerability, permission bypass concern, or unsafe handling pattern, keep it out of the public issue tracker until the maintainer has reviewed it.
 
+## Permission review
+
+For non-sensitive, public hardening work around media permissions, use the checklist in [PERMISSION_CHECKLIST.md](./PERMISSION_CHECKLIST.md).
+
+That checklist is meant for reviewing normal permission prompt flows, denied-state UX, secure context requirements, and user gesture constraints without exposing sensitive vulnerability details.
+
 ## Scope
 
 Examples of relevant security topics:

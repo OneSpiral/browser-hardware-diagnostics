@@ -9,6 +9,7 @@ const contributingPath = resolve(root, "CONTRIBUTING.md");
 const codeOfConductPath = resolve(root, "CODE_OF_CONDUCT.md");
 const codeownersPath = resolve(root, ".github/CODEOWNERS");
 const compatibilityPath = resolve(root, "COMPATIBILITY.md");
+const permissionChecklistPath = resolve(root, "PERMISSION_CHECKLIST.md");
 const discussionsPath = resolve(root, "DISCUSSIONS.md");
 const triagePath = resolve(root, "TRIAGE.md");
 const securityPath = resolve(root, "SECURITY.md");
@@ -26,6 +27,7 @@ describe("repository sponsorship docs", () => {
 		expect(existsSync(codeOfConductPath)).toBe(true);
 		expect(existsSync(codeownersPath)).toBe(true);
 		expect(existsSync(compatibilityPath)).toBe(true);
+		expect(existsSync(permissionChecklistPath)).toBe(true);
 		expect(existsSync(discussionsPath)).toBe(true);
 		expect(existsSync(triagePath)).toBe(true);
 		expect(existsSync(securityPath)).toBe(true);
@@ -80,6 +82,7 @@ describe("repository sponsorship docs", () => {
 		expect(security).toContain("security");
 		expect(security).toContain("OneSpiral");
 		expect(security).toContain("public issue");
+		expect(security).toContain("PERMISSION_CHECKLIST.md");
 	});
 
 	it("asks for richer technical context in issue forms", () => {
@@ -125,8 +128,18 @@ describe("repository sponsorship docs", () => {
 		expect(compatibility).toContain("MediaDevices");
 	});
 
-	it("links the compatibility matrix from the README", () => {
+	it("publishes a permission-handling checklist for media diagnostics", () => {
+		const checklist = readFileSync(permissionChecklistPath, "utf8");
+		expect(checklist).toContain("permission prompt");
+		expect(checklist).toContain("denied");
+		expect(checklist).toContain("secure context");
+		expect(checklist).toContain("user gesture");
+		expect(checklist).toContain("microphone");
+	});
+
+	it("links the compatibility matrix and permission checklist from the README", () => {
 		const readme = readFileSync(readmePath, "utf8");
 		expect(readme).toContain("[COMPATIBILITY.md](./COMPATIBILITY.md)");
+		expect(readme).toContain("[PERMISSION_CHECKLIST.md](./PERMISSION_CHECKLIST.md)");
 	});
 });
