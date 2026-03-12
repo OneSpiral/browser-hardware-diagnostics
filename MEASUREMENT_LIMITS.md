@@ -51,6 +51,17 @@ Practical guidance:
 - compare runs taken under similar conditions instead of mixing browsers or devices casually
 - avoid making precision claims that exceed what the event stream can support
 
+## Drag and hold interaction limits
+
+Mouse drag and hold diagnostics are also based on browser-delivered pointer and mouse events rather than raw device telemetry.
+
+Important caveats:
+
+- drag distance reflects the event stream seen by the page, not the exact hardware path
+- hold timing depends on event delivery and page focus rather than a dedicated timer in the device
+- losing browser focus, opening a context menu, or leaving the browser window can interrupt the sequence
+- browsers and operating systems may differ in pointer capture, coalescing, or delivery behavior
+
 ## Browser and environment factors
 
 Measurement quality can vary with:
