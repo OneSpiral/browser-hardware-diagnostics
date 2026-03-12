@@ -1,52 +1,57 @@
-# Sponsoring HWProbe
+# Sponsoring Browser Hardware Diagnostics
 
-HWProbe is an independently branded product sponsored by **[OneSpiral](https://github.com/OneSpiral)**.
+**Browser Hardware Diagnostics** is the open-source technical solution.
 
-## What this repository is
+It is:
 
-This repository is the **open-source technical solution** for browser-based hardware diagnostics:
-
-- core tool implementations
-- browser API integrations
-- UI components
-- local development workflow
-- tests and build pipeline
-
-## What this repository is not
-
-This repository does **not** contain the full production distribution stack.
-
-The following layers are maintained separately in private infrastructure:
-
-- localization and multi-language content
-- SEO and long-tail page strategy
-- product / model / issue catalogs
-- growth experiments and analytics
-- advertising and monetization systems
-- commercial content and distribution logic
+- maintained by **[OneSpiral](https://github.com/OneSpiral)**
+- sponsored in production by **[hwprobe.com](https://hwprobe.com)**
 
 ## Sponsorship model
 
-OneSpiral sponsors the open-source technical solution while keeping the product brand, distribution strategy, and commercial layers separate.
+The goal is to keep the public repository neutral and community-friendly while allowing branded deployments to sponsor the work.
 
 That means:
 
-- **HWProbe** stays the public technical implementation and OSS reference
-- **OneSpiral** appears as the sponsor
-- production growth systems remain separate
+- this repository is the **technical solution**
+- branded websites such as **hwprobe.com** can act as sponsors and production adopters
+- maintainers and contributors collaborate in public on the diagnostics toolkit itself
+- private growth, monetization, SEO, localization, and distribution layers remain separate
 
-## Repository boundary
+## What belongs here
 
-If you are contributing here, contribute to the technical solution itself.
+This repository is for shared technical capabilities such as:
 
-If you are looking for partnerships, distribution, localization, or sponsorship discussions, start from the sponsor profile:
+- browser hardware diagnostics primitives
+- reusable UI for testing interactions
+- test coverage for browser-facing logic
+- extensibility points for future tools
+- public technical documentation
 
-- **Sponsor:** https://github.com/OneSpiral
+## What does not belong here
+
+This repository is not the full branded website stack.
+
+The following can live elsewhere:
+
+- private SEO systems
+- branded distribution strategy
+- analytics and growth experiments
+- monetization and advertising systems
+- long-tail content pipelines
+- private product / model / issue catalogs
+
+## Why the website is a sponsor instead of the repository identity
+
+Using the branded site as a sponsor creates a healthier open-source structure:
+
+- the public repo earns high-quality links from a real production adopter
+- the technical solution stays broader than any single website
+- other adopters can join without feeling they are contributing to somebody else's marketing site
+- contributors can focus on improving technical capabilities for the ecosystem
+
+## Maintainer and sponsor links
+
+- **Maintainer:** https://github.com/OneSpiral
 - **GitHub Sponsors:** https://github.com/sponsors/OneSpiral
-- **Live product:** https://hwprobe.com
-
-## GitHub Sponsors status
-
-This repository is wired for GitHub Sponsors via `.github/FUNDING.yml`.
-
-If the `OneSpiral` account has not enabled GitHub Sponsors yet, GitHub may fall back to the profile page. The funding metadata and sponsor CTA are still kept in place so the repository is ready as soon as account-level sponsor onboarding is completed.
+- **Sponsor / production adopter:** https://hwprobe.com

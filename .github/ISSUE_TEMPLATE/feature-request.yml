@@ -1,0 +1,25 @@
+name: Feature request
+description: Propose a reusable improvement to browser hardware diagnostics
+title: "feature: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What technical limitation are you trying to solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Describe the reusable toolkit capability you want to add.
+    validations:
+      required: true
+  - type: textarea
+    id: non-goals
+    attributes:
+      label: Non-goals
+      description: Clarify what should stay outside the open-source toolkit boundary.

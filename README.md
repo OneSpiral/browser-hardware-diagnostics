@@ -1,70 +1,100 @@
-# 🔧 HWProbe
+# Browser Hardware Diagnostics
 
-[![Live Site](https://img.shields.io/badge/live-hwprobe.com-6366f1)](https://hwprobe.com)
-[![Sponsor](https://img.shields.io/badge/sponsor-OneSpiral-111827)](https://github.com/OneSpiral)
+[![Live Sponsor](https://img.shields.io/badge/sponsor-hwprobe.com-6366f1)](https://hwprobe.com)
+[![Maintainer](https://img.shields.io/badge/maintainer-OneSpiral-111827)](https://github.com/OneSpiral)
 [![License: MIT](https://img.shields.io/badge/license-MIT-22c55e)](./LICENSE)
 
-**Open-source technical solution for browser-based hardware diagnostics.**
+**Open-source browser hardware diagnostics toolkit.**
 
-👉 **[hwprobe.com](https://hwprobe.com)**
+Maintained by **[OneSpiral](https://github.com/OneSpiral)**.  
+Sponsored by **[hwprobe.com](https://hwprobe.com)**.
 
-Test your gamepad, keyboard, mouse, monitor, microphone & speakers — directly in the browser. No downloads. No data collection. 100% client-side.
+This repository is the neutral, community-facing technical solution for browser-based hardware testing. It is meant to be improved in public so the ecosystem can collectively expand browser hardware diagnostics capabilities.
 
-> Sponsored by **[OneSpiral](https://github.com/OneSpiral)**.
->
-> This repository contains the open-source technical implementation. Production distribution, localization, content, and commercial layers are maintained separately.
->
-> See [SPONSORING.md](./SPONSORING.md) for sponsorship positioning and repository boundaries.
+## Why this repository exists
 
-## ❤️ Support the sponsor
+This project exists to provide a reusable toolkit for testing hardware directly in the browser:
 
-If this technical solution is useful, support the sponsor behind it:
+- gamepad input diagnostics
+- keyboard state and rollover testing
+- mouse click / movement / scroll testing
+- monitor refresh and dead-pixel checks
+- microphone capture diagnostics
+- speaker / tone playback testing
 
-- **Sponsor profile:** [OneSpiral](https://github.com/OneSpiral)
-- **GitHub Sponsors URL:** https://github.com/sponsors/OneSpiral
+The branded production website is **not** the repository itself.
 
-If GitHub Sponsors is not yet enabled on the account, the repository still keeps the sponsor link and funding metadata ready.
+Instead:
 
-## ✨ Features
+- this repo is the **technical solution**
+- **hwprobe.com** is a sponsored production adopter
+- **OneSpiral** maintains the open-source core
+- community contributors can help improve technical capabilities for everyone
 
-| Tool | Description |
-|---|---|
-| 🎮 **Gamepad Tester** | Joystick deadzone, button mapping, trigger pressure, drift detection |
-| ⌨️ **Keyboard Tester** | Visual key layout, press counter, test progress, ghosting detection |
-| 🖱️ **Mouse Tester** | Click speed (CPS), button detection, scroll distance, movement tracking |
-| 🖥️ **Monitor Tester** | Refresh rate (FPS), dead pixel test, color gradient, display info |
-| 🎤 **Microphone Tester** | Real-time waveform, volume meter, frequency spectrum, recording |
-| 🔊 **Speaker Tester** | L/R channel test, tone generator, frequency presets, waveform types |
+## Live production adopter
 
-## 🚀 Quick Start
+The primary sponsored production deployment is:
+
+- **hwprobe.com** → https://hwprobe.com
+
+That site can sponsor the open-source project with high-quality backlinks, adoption proof, and real-world usage, while the repository stays neutral and open for broader community contribution.
+
+## Repository boundary
+
+This repository contains:
+
+- browser API integrations
+- UI components for diagnostics
+- testable core logic
+- local development workflow
+- public technical documentation
+
+This repository does **not** contain the private growth stack for any branded deployment.
+
+See [SPONSORING.md](./SPONSORING.md) for the sponsor / maintainer / production boundary.
+
+## ❤️ Support the maintainer and sponsor
+
+- **Maintainer:** [OneSpiral](https://github.com/OneSpiral)
+- **GitHub Sponsors:** https://github.com/sponsors/OneSpiral
+- **Sponsor / production adopter:** [hwprobe.com](https://hwprobe.com)
+
+If GitHub Sponsors is not yet enabled on the account, the funding metadata still falls back cleanly to the maintainer profile.
+
+## Community
+
+If you want to help expand browser hardware diagnostics capabilities, start here:
+
+- [CONTRIBUTING.md](./CONTRIBUTING.md)
+- [ARCHITECTURE.md](./ARCHITECTURE.md)
+- [ROADMAP.md](./ROADMAP.md)
+
+We want contributors to improve the toolkit itself — better diagnostics primitives, better browser compatibility, better test ergonomics, and better extensibility.
+
+## Quick start
 
 ```bash
-git clone https://github.com/OneSpiral/hwprobe.git
-cd hwprobe
+git clone https://github.com/OneSpiral/browser-hardware-diagnostics.git
+cd browser-hardware-diagnostics
 pnpm install
 pnpm dev
 ```
 
-## 🏗️ Tech Stack
+## Tech stack
 
 - **Framework**: SvelteKit 2 + Svelte 5 (runes)
 - **Styling**: Tailwind CSS v4
 - **Icons**: Lucide
 - **Build**: Vite 7
 - **Testing**: Vitest
-- **Deploy**: Cloudflare Pages
+- **Deploy target for branded sites**: Cloudflare Pages
 
-## 📦 Deploy
+## Build
 
 ```bash
 pnpm build
-npx wrangler pages deploy build --project-name=hwprobe
 ```
 
-## 🤝 Contributing
-
-PRs welcome! TDD workflow: write a failing test → make it pass → refactor.
-
-## 📄 License
+## License
 
 MIT

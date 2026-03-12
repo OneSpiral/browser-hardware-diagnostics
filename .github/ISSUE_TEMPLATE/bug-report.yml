@@ -1,0 +1,27 @@
+name: Bug report
+description: Report a technical issue in the browser diagnostics toolkit
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Describe the technical problem clearly.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Include browser, device, steps, and expected vs actual behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Explain the reusable technical impact on the toolkit.
+    validations:
+      required: true

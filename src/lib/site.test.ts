@@ -1,28 +1,34 @@
 import { describe, expect, it } from "vitest";
 import {
 	GITHUB_REPOSITORY_URL,
+	MAINTAINER_NAME,
+	MAINTAINER_PROFILE_URL,
 	SITE_NAME,
 	SPONSOR_NAME,
-	SPONSOR_PROFILE_URL,
 	SPONSOR_TAGLINE,
+	SPONSOR_URL,
 } from "./site";
 
 describe("site branding", () => {
-	it("keeps the product brand separate from the sponsor", () => {
-		expect(SITE_NAME).toBe("HWProbe");
-		expect(SPONSOR_NAME).toBe("OneSpiral");
-		expect(SPONSOR_NAME).not.toBe(SITE_NAME);
+	it("positions the public project as a neutral technical toolkit", () => {
+		expect(SITE_NAME).toBe("Browser Hardware Diagnostics");
+		expect(SPONSOR_NAME).toBe("hwprobe.com");
+		expect(MAINTAINER_NAME).toBe("OneSpiral");
+		expect(SPONSOR_NAME).not.toBe(MAINTAINER_NAME);
 	});
 
-	it("uses the OneSpiral GitHub repository", () => {
-		expect(GITHUB_REPOSITORY_URL).toBe("https://github.com/OneSpiral/hwprobe");
+	it("uses the renamed public GitHub repository", () => {
+		expect(GITHUB_REPOSITORY_URL).toBe(
+			"https://github.com/OneSpiral/browser-hardware-diagnostics",
+		);
 	});
 
-	it("links the sponsor profile", () => {
-		expect(SPONSOR_PROFILE_URL).toBe("https://github.com/OneSpiral");
+	it("separates maintainer and sponsor URLs", () => {
+		expect(MAINTAINER_PROFILE_URL).toBe("https://github.com/OneSpiral");
+		expect(SPONSOR_URL).toBe("https://hwprobe.com");
 	});
 
-	it("presents OneSpiral as sponsor instead of owner copy", () => {
+	it("presents the website as sponsor and OneSpiral as maintainer", () => {
 		expect(SPONSOR_TAGLINE).toContain("Sponsored by");
 		expect(SPONSOR_TAGLINE).toContain(SPONSOR_NAME);
 		expect(SPONSOR_TAGLINE).not.toContain("All rights reserved");
