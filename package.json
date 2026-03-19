@@ -28,7 +28,7 @@
 	"dependencies": {
 		"@tailwindcss/vite": "^4.2.1",
 		"lucide-svelte": "^0.577.0",
-		"tailwindcss": "^4.2.1"
+		"tailwindcss": "^4.2.2"
 	},
 	"pnpm": {
 		"overrides": {
